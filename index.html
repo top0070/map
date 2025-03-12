@@ -3,24 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>네이버 지도 앱 실행하기</title>
+  <title>네이버 이동</title>
+  
+  <!-- 버튼 스타일 정의 -->
+  <style>
+    .naver-button {
+      /* 진한 파란색 배경 */
+      background-color: #00008B; 
+      /* 흰색 글씨 */
+      color: #FFFFFF; 
+      /* 글씨체 두껍게 */
+      font-weight: bold; 
+      /* 글씨 크기 조금 크게 */
+      font-size: 1.2em; 
+      /* 버튼 안쪽 여백 (위아래 15px, 좌우 25px) */
+      padding: 15px 25px; 
+      /* 테두리 없애기 */
+      border: none;
+      /* 모서리 둥글게(선택 사항) */
+      border-radius: 5px; 
+      /* 마우스 포인터 변경 */
+      cursor: pointer;
+    }
+
+    /* 마우스 오버 시 조금 더 진해지는 효과 (선택 사항) */
+    .naver-button:hover {
+      background-color: #000070;
+    }
+  </style>
+
   <script>
     function openNaverMap() {
       var now = new Date().getTime();
       var fallbackUrl = "https://play.google.com/store/apps/details?id=com.nhn.android.nmap";
+      
+      // 일정 시간 후 앱이 실행되지 않았다면 fallback URL로 이동
       setTimeout(function () {
         var newTime = new Date().getTime();
         if (newTime - now < 1500) {
           window.location.href = fallbackUrl;
         }
       }, 1000);
+
+      // 딥링크 실행 (네이버 지도 앱)
       window.location.href = "intent://actionPath?parameter=value&appname=com.example.myapp#Intent;scheme=nmap;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;package=com.nhn.android.nmap;end";
     }
   </script>
 </head>
 <body>
-  <h1>네이버 지도 앱 실행하기</h1>
-  <p>아래 버튼을 클릭하면 네이버 지도 앱이 실행됩니다. 앱이 없으면 앱 다운로드 페이지로 이동합니다.</p>
-  <button onclick="openNaverMap()">네이버 지도 앱 열기</button>
+  <h1>네이버 이동 클릭</h1>
+  <p>아래 버튼을 클릭하면 네이버 지도 앱으로 실행됩니다. 앱이 없으면 앱 다운로드 페이지로 이동합니다.</p>
+
+  <!-- 버튼에 .naver-button 클래스를 적용 -->
+  <button class="naver-button" onclick="openNaverMap()">네이버 이동</button>
 </body>
 </html>
